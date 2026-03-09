@@ -1,3 +1,3 @@
-export interface ProcessadorPedido {
-  calcularTotal(tipoProduto: string, preco: number, quantidade: number): number ;
+export interface EstrategiaPedido {
+  calcularTotal(preco: number, quantidade: number): number ;
 }
