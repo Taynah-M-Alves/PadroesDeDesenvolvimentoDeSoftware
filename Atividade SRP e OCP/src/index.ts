@@ -7,14 +7,16 @@ import { ImpostoVestuario } from "./Imposto/ImpostoVestuario";
 import { PagamentoPix } from "./Pagamento/PagamentoPix";
 import { ImpostoLivro } from "./Imposto/ImpostoLivro";
 import { PagamentoCartao } from "./Pagamento/PagamentoCartao";
+import { PagamentoCriptomoeda } from "./Pagamento/PagamentoCriptomoeda";
+import { ImpostoEletronico } from "./Imposto/ImpostoEletronico";
 
-const calculadora = new CalculadoraPedido(new ImpostoVestuario());
-const pagamento = new GeradorPagamento(new PagamentoPix());
+const calculadoraVestuario = new CalculadoraPedido(new ImpostoVestuario());
+const pagamentoPix = new GeradorPagamento(new PagamentoPix());
 const email = new ConfirmacaoEmail();
 
 const pedido = new PedidoService(
-  calculadora,
-  pagamento,
+  calculadoraVestuario,
+  pagamentoPix,
   email
 );
 
@@ -24,12 +26,12 @@ pedido.processarPedido(
   "angela@gmail.com"
 );
 
-const calculadora2 = new CalculadoraPedido(new ImpostoLivro());
-const pagamento2 = new GeradorPagamento(new PagamentoCartao());
+const calculadoraLivro = new CalculadoraPedido(new ImpostoLivro());
+const pagamentoCartao = new GeradorPagamento(new PagamentoCartao());
 
 const pedido2 = new PedidoService(
-  calculadora2,
-  pagamento2,
+  calculadoraLivro,
+  pagamentoCartao,
   email
 );
 
@@ -37,4 +39,19 @@ pedido2.processarPedido(
   10, 
   5,   
   "taynah.micheli@gmail.com"
+);
+
+const calculadoraEletronico = new CalculadoraPedido(new ImpostoEletronico());
+const pagamentoCripto = new GeradorPagamento(new PagamentoCriptomoeda());
+
+const pedido3 = new PedidoService(
+  calculadoraEletronico,
+  pagamentoCripto,
+  email
+);
+
+pedido3.processarPedido(
+  60, 
+  4,   
+  "iago.micheli@gmail.com"
 );
