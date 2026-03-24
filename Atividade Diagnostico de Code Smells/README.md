@@ -1,6 +1,6 @@
 # Atividade Prática: Diagnóstico de Code Smells
 
-*Contexto:* Você recebeu o código abaixo de um sistema de gerenciamento de biblioteca. O sistema funciona, mas apresenta diversos problemas estruturais. Sua missão é identificar os code smells e propor refatorações
+#### Contexto: Você recebeu o código abaixo de um sistema de gerenciamento de biblioteca. O sistema funciona, mas apresenta diversos problemas estruturais. Sua missão é identificar os code smells e propor refatorações
 
 ```bash
 class SistemaBiblioteca {
@@ -113,19 +113,25 @@ class SistemaBiblioteca {
 
 ```
 
-## Parte 1 —  Identificação
+### Parte 1 —  Identificação
 
-### 1.  Identifique todos os code smells presentes. Para cada um, indique: qual é o code smell, onde está (método/trecho), e por que é um problema.Para cada princípio (LSP, ISP, DIP), liste:    
-
-
-## 2.  Proposta de Refatoração:
-
-### Para cada code smell identificado, proponha uma refatoraçãoespecífica, escreva o código refatorado e explique qual técnica foi utilizada (Extract Class, Move Method, Extract Method, etc.).
+#### 1.  Identifique todos os code smells presentes. Para cada um, indique: qual é o code smell, onde está (método/trecho), e por que é um problema.Para cada princípio (LSP, ISP, DIP), liste:    
 
 
+### 2.  Proposta de Refatoração:
 
-## 3. Documentação:
-### Crie um documento com o formato: | Code Smell | Localização | Problema | Refatoração Proposta | Técnica
+#### Para cada code smell identificado, proponha uma refatoraçãoespecífica, escreva o código refatorado e explique qual técnica foi utilizada (Extract Class, Move Method, Extract Method, etc.).
 
-# | Code Smell | Localização | Problema | Refatoração Proposta | Técnica
-| --- | --- | --- | --- | --- |
+
+
+### 3. Documentação:
+
+| # |Code Smell | Localização | Problema | Refatoração Proposta | Técnica |
+|:----------: |:--------:|:--------:|:--------:|:--------:|:--------:|
+| 1 | God Class | A classe SistemaBiblioteca  | Uma classe só executa várias funções ao mesmo tempo, o que viola o single responsability principle e dificulta a manutenção |Segmentar a classe em serviços: _LivroService_, _UsuarioService_, _EmprestimoService_, _RelatorioService_, _MultaService_ e _EmailService_ | Extract Class |
+| 2 | Primitive Obsession | As estruturas _string[][]_ para livros, usuários e emprestimos | --- | --- | --- |
+| 3 | Magic Strings | Strings como _DISPONIVEL_,_EMPRESTADO_,_PROFESSOR_ | --- | --- | --- |
+| 4 | Long Method | Na função _realizarEmprestimo()_ | --- | --- | --- |
+| 5 | Feature Envy | A função _gerarRelatorio()_ acessando diretamente arrays internos | --- | --- | --- |
+| 6 | Duplicate Code | No calculo de datas e manipulação de empréstimos | --- | --- | --- |
+| 7 | High Coupling | A função _enviarEmail()_ dentro da classe _SistemaBancario_ | --- | --- | --- |
