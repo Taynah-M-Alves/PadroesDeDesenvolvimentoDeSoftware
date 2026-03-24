@@ -45,9 +45,9 @@ escreverCodigo(): void { console.log("Estagiário escrevendo código"); }
 ## Parte 1 —  Identificar Violações
 
 ### 1.  Para cada princípio (LSP, ISP, DIP), liste:    
-### - Qual trecho do código viola o princípio
-### - Por que é uma violação
-### - Qual o impacto no sistema
+#### - Qual trecho do código viola o princípio
+#### - Por que é uma violação
+#### - Qual o impacto no sistema
 
 1. Liskov Substituition Principle:
 - Trecho que viola o principio:     
@@ -58,7 +58,7 @@ throw new Error("Gerente não escreve código");
 ```
 - Por que é uma violação    
 
-porque algumas classes precisam usar 'Trow new Error' por não conseguir implementar todos os métodos da interface funcionario(interface pai), o que fere a ideia a ideia de que uma classe filha possa ficar no lugar da classe pai de forma que o código continue funcionando 
+Porque algumas classes precisaram usar 'Trow new Error' por não conseguir implementar todos os métodos da interface funcionario(interface pai), o que fere a ideia a ideia de que uma classe filha possa ficar no lugar da classe pai de forma que o código continue funcionando.
 
 - Qual o impacto no sistema    
 
