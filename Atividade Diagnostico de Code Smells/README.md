@@ -129,9 +129,9 @@ class SistemaBiblioteca {
 | # |Code Smell | Localização | Problema | Refatoração Proposta | Técnica |
 |:----------: |:--------:|:--------:|:--------:|:--------:|:--------:|
 | 1 | God Class | A classe SistemaBiblioteca  | Uma classe só executa várias funções ao mesmo tempo, o que viola o single responsability principle e dificulta a manutenção |Segmentar a classe em serviços: _LivroService_, _UsuarioService_, _EmprestimoService_, _RelatorioService_, _MultaService_ e _EmailService_ | Extract Class |
-| 2 | Primitive Obsession | As estruturas _string[][]_ para livros, usuários e emprestimos | --- | --- | --- |
-| 3 | Magic Strings | Strings como _DISPONIVEL_,_EMPRESTADO_,_PROFESSOR_ | --- | --- | --- |
-| 4 | Long Method | Na função _realizarEmprestimo()_ | --- | --- | --- |
-| 5 | Feature Envy | A função _gerarRelatorio()_ acessando diretamente arrays internos | --- | --- | --- |
-| 6 | Duplicate Code | No calculo de datas e manipulação de empréstimos | --- | --- | --- |
-| 7 | High Coupling | A função _enviarEmail()_ dentro da classe _SistemaBancario_ | --- | --- | --- |
+| 2 | Primitive Obsession | As estruturas _string[][]_ para livros, usuários e emprestimos | Os dados são armazenados como arrays de strings usando índices (l[0], l[1]). Isso reduz legibilidade e aumenta risco de erros. | Criar classes específicas _Livro_, _Usuario_ e _Emprestimo_ com propriedades nomeadas. | Replace Data Structure with Class |
+| 3 | Magic Strings | Strings como _DISPONIVEL_,_EMPRESTADO_,_PROFESSOR_ | Valores fixos espalhados pelo código dificultam manutenção e podem gerar erros de digitação. | Substituir por enum ou constantes (StatusLivro, TipoUsuario) | Replace Magic Number/String with Constant |
+| 4 | Long Method | Na função _realizarEmprestimo()_ | O método possui muitas responsabilidades: busca de livro, busca de usuário, validação, cálculo de limite, atualização de status e envio de e-mail. | Dividir o método em métodos menores como _buscarLivro_, _validarUsuario_, _calcularLimite_, _registrarEmprestimo_. | Extract Method |
+| 5 | Feature Envy | A função _gerarRelatorio()_ acessando diretamente arrays internos | O método manipula diretamente estruturas de dados em vez de usar objetos com comportamento próprio. | Criar um _RelatorioService_ responsável por gerar relatórios a partir de entidades | Move Method |
+| 6 | Duplicate Code | No calculo de datas e manipulação de empréstimos | O método manipula diretamente estruturas de dados em vez de usar objetos com comportamento próprio. | Criar EmprestimoService e MultaService para separar responsabilidades. | Extract Class |
+| 7 | High Coupling | A função _enviarEmail()_ dentro da classe _SistemaBancario_ | A classe mistura regra de negócio com comunicação externa (email). | Criar um EmailService independente responsável pelo envio de emails | Extract Class |
